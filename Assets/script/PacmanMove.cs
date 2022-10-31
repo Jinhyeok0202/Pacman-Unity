@@ -28,4 +28,13 @@ public class PacmanMove : MonoBehaviour
         GetComponent<Animator>().SetFloat("DirX", direction.x);
         GetComponent<Animator>().SetFloat("DirY", direction.y);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            // 게임 종료
+            Debug.Log("게임 종료");
+        }
+    }
 }
