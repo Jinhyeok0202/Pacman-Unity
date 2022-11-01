@@ -6,6 +6,11 @@ using static UnityEditor.PlayerSettings;
 
 public class PacmanMove : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject gameclear;
+
+    [SerializeField]
+    private GameObject gameplayer;
 
     public float speed = 0.4f;
     Vector2 dest = Vector2.zero;
@@ -33,8 +38,8 @@ public class PacmanMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Finish"))
         {
-            // 게임 종료
-            Debug.Log("게임 종료");
+            gameclear.SetActive(true);
+            Destroy(gameplayer);
         }
     }
 }

@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GhostMove : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject gameover;
 
     public Transform[] waypoints;
     int cur = 0;
 
-
     public float speed = 0.3f;
+
+    void Start()
+    {
+        gameover.SetActive(false);
+    }
+
     void FixedUpdate()
     {
         Vector2 direction = (waypoints[cur].position - transform.position).normalized;
 
         GetComponent<Rigidbody2D>().velocity = direction * speed;
-        
+
         float distance = Vector2.Distance(transform.position, waypoints[cur].position);
         if (distance <= 0.1f)
         {
@@ -27,10 +35,15 @@ public class GhostMove : MonoBehaviour
         GetComponent<Animator>().SetFloat("DirX", dir.x);
         GetComponent<Animator>().SetFloat("DirY", dir.y);
     }
+
     void OnTriggerEnter2D(Collider2D co)
     {
         if (co.name == "pacman")
+        {
             Destroy(co.gameObject);
+            gameover.SetActive(true);
+            
+        }
     }
 
     private void OnDrawGizmosSelected()

@@ -25,8 +25,12 @@ public class Opendoor : MonoBehaviour
             // ºí·¢È¦ SetActive(true)
             blackhole.SetActive(true);
 
+
             // ¿ÀÇÂµµ¾îÃ¼Å© X
             isOpen = true;
+
         }
     }
+   
+
 }
